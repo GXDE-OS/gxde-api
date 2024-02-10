@@ -1,0 +1,71 @@
+#!/bin/sh
+# postinst script for dde-api
+
+set -e
+player_user=deepin-sound-player
+player_home=/var/lib/$player_user
+
+themeDir="/boot/grub/themes/deepin"
+adjustGrubThemeBin="/usr/lib/deepin-api/adjust-grub-theme"
+grubCfgFile=/boot/grub/grub.cfg
+
+adjustGrubTheme () {
+	themeToolVersion=$($adjustGrubThemeBin -version)
+	if [ -z "$themeToolVersion" ]; then
+		themeToolVersion=0
+	fi
+	echo themeToolVersion: $themeToolVersion
+
+	# get current version
+	themeCurrentVersion=$(grep -m 1 '#version:' $themeDir/theme.txt | cut -d: -f 2)
+	if [ -z "$themeCurrentVersion" ]; then
+		themeCurrentVersion=0
+	fi
+	echo themeCurrentVersion: $themeCurrentVersion
+
+	if [ $themeToolVersion -gt $themeCurrentVersion ]; then
+		echo need adjust grub theme
+		$adjustGrubThemeBin -log-sys
+		grub-mkconfig -o $grubCfgFile
+	fi
+}
+
+case "$1" in
+	configure)
+		if ! getent group $player_user >/dev/null; then
+			addgroup --quiet --system $player_user
+		fi
+		if ! getent passwd $player_user >/dev/null; then
+			adduser --quiet --system --ingroup $player_user --home $player_home $player_user
+			adduser --quiet $player_user audio
+		fi
+
+		mkdir -p $player_home/.config/pulse
+		echo "autospawn = no" > $player_home/.config/pulse/client.conf
+		chown -R $player_user:$player_user $player_home/.config
+
+		if [ -f $grubCfgFile -a -f /etc/default/grub ]; then
+			adjustGrubTheme
+		fi
+	;;
+	abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+
+pc_arch=`dpkg --print-architecture`
+pc_64=amd64
+pc_32=i386
+if [ "$1" = "triggered"  ];then
+if [ $pc_arch = $pc_64  ] || [ $pc_arch = $pc_32  ];then
+/usr/lib/deepin-api/image-blur-helper /usr/share/wallpapers/deepin
+fi
+fi
+
+#DEBHELPER#
+exit 0
