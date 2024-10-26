@@ -115,6 +115,6 @@ install-dev: ${addprefix install/lib/, ${LIBRARIES}}
 install: install-binary install-dev
 
 clean:
-	rm -rf out/bin gobuild out
+	rm -rf out/bin gobuild out obj-x86_64-linux-gnu/
 
 rebuild: clean build
