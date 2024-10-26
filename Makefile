@@ -1,7 +1,10 @@
 PREFIX = /usr
 GOBUILD_DIR = gobuild
 GOPKG_PREFIX = pkg.deepin.io/dde/api
-GOSITE_DIR = ${PREFIX}/share/gocode
+GOPATH_DIR = gopath
+GO111MODULE = off
+GOSITE_DIR = ${PREFIX}/share/gocode-gxde/:${PREFIX}/share/gocode
+GOPATH="/usr/share/gocode-gxde/:/usr/share/gocode/:${CURDIR}/${GOPATH_DIR}"
 libdir = /lib
 SYSTEMD_LIB_DIR = ${libdir}
 SYSTEMD_SERVICE_DIR = ${SYSTEMD_LIB_DIR}/systemd/system/
