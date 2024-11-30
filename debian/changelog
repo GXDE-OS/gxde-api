@@ -1,8 +1,9 @@
-dde-api (3.18.6) UNRELEASED; urgency=medium
+dde-api (3.18.7) UNRELEASED; urgency=medium
 
   * Non-maintainer upload.
+  * 调整构建依赖
 
- -- gfdgd_xi <3025613752@qq.com>  Sat, 26 Oct 2024 16:34:29 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sat, 30 Nov 2024 15:57:26 +0800
 
 dde-api (3.18.5-1+comsta) unstable; urgency=low
 
