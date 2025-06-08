@@ -4,7 +4,8 @@ Priority: extra
 Maintainer: gfdgd xi <3025613752@qq.com>
 Build-Depends: debhelper (>= 9), dh-golang, golang-any,
  golang-go | gccgo-5,
- golang-dlib-dev (>= 1.2.13),golang-gir-gobject-2.0-dev (>> 1.2.0+),
+ golang-dlib-dev (>= 1.2.13) | golang-github-linuxdeepin-go-lib-dev,
+ golang-gir-gobject-2.0-dev (>> 1.2.0+),
  golang-gir-gio-2.0-dev (>> 1.2.0+), golang-gir-glib-2.0-dev (>> 1.2.0+),
  golang-gir-gudev-1.0-dev (>> 1.2.0+),
  golang-github-linuxdeepin-go-x11-client-dev (>= 0.0.4),
@@ -48,7 +49,8 @@ Provides: dde-api-dev
 Conflicts: dde-api-dev
 Replaces: dde-api-dev
 Depends: ${shlibs:Depends}, ${misc:Depends},
- golang-dlib-dev(>= 1.2.13),golang-gir-gobject-2.0-dev (>> 1.2.0+), golang-gir-gio-2.0-dev (>> 1.2.0+),
+ golang-dlib-dev(>= 1.2.13) | golang-github-linuxdeepin-go-lib-dev,
+ golang-gir-gobject-2.0-dev (>> 1.2.0+), golang-gir-gio-2.0-dev (>> 1.2.0+),
  golang-gir-glib-2.0-dev (>> 1.2.0+), golang-gir-gudev-1.0-dev (>> 1.2.0+),
  golang-github-linuxdeepin-go-x11-client-dev (>= 0.0.4),
  golang-github-linuxdeepin-go-dbus-factory-dev (>> 0.7.0+),
