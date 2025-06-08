@@ -219,7 +219,7 @@ func langCodeFromLocale(locale string) string {
 	return parts[0]
 }
 
-const defaultDependsFile = "/usr/share/dde-api/data/pkg_depends"
+const defaultDependsFile = "/usr/share/gxde-api/data/pkg_depends"
 
 // parse pkg_depends file
 func parsePkgDepends(filename string) (ret map[string]map[string]map[string][]string, err error) {

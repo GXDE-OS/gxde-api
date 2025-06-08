@@ -90,8 +90,8 @@ install-binary:
 	mkdir -pv ${DESTDIR}/var/lib/polkit-1/localauthority/10-vendor.d
 	cp misc/polkit-localauthority/*.pkla ${DESTDIR}/var/lib/polkit-1/localauthority/10-vendor.d/
 
-	mkdir -pv ${DESTDIR}${PREFIX}/share/dde-api
-	cp -R misc/data ${DESTDIR}${PREFIX}/share/dde-api
+	mkdir -pv ${DESTDIR}${PREFIX}/share/gxde-api
+	cp -R misc/data ${DESTDIR}${PREFIX}/share/gxde-api
 
 	mkdir -pv ${DESTDIR}${SYSTEMD_SERVICE_DIR}
 	cp -R misc/systemd/system/*.service ${DESTDIR}${SYSTEMD_SERVICE_DIR}

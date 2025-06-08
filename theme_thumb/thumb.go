@@ -21,7 +21,7 @@ const (
 	height = 70
 )
 
-var cacheDir = filepath.Join(basedir.GetUserCacheDir(), "deepin", "dde-api", "theme_thumb")
+var cacheDir = filepath.Join(basedir.GetUserCacheDir(), "deepin", "gxde-api", "theme_thumb")
 
 func getScaleDir() string {
 	return fmt.Sprintf("X%.2f", scaleFactor)
@@ -180,7 +180,7 @@ func getChangeTime(fileInfo os.FileInfo) time.Time {
 	return time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
 }
 
-// ex. $HOME/.cache/deepin/dde-api/theme_thumb/X1.00/icon-v0/deepin.png
+// ex. $HOME/.cache/deepin/gxde-api/theme_thumb/X1.00/icon-v0/deepin.png
 func prepareOutputPath(type0, id string, version int) string {
 	scaleDir := getScaleDir()
 	typeDir := getTypeDir(type0, version)

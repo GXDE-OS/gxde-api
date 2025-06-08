@@ -95,7 +95,7 @@ func libinputGetAccelProfile(id int32) (bool, bool) {
 // for mouse: set enabled accel profile, in order "adaptive", "flat".
 func libinputSetAccelProfile(id int32, useAdaptiveProfile bool) error {
 	if !libinputIsBothAccelProfileAvaliable(id) {
-		return errors.New("dde-api: device doesn't support both accel profile")
+		return errors.New("gxde-api: device doesn't support both accel profile")
 	}
 
 	prop, err := getInt8Prop(id, libinputPropAccelProfileEnabled, 2)

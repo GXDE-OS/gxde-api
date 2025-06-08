@@ -28,7 +28,7 @@ import (
 
 const (
 	defaultThemeOutputDir = "/boot/grub/themes/deepin"
-	defaultThemeInputDir  = "/usr/share/dde-api/data/grub-themes/deepin"
+	defaultThemeInputDir  = "/usr/share/gxde-api/data/grub-themes/deepin"
 )
 
 var optScreenHeight int

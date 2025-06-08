@@ -5,5 +5,5 @@
 /usr/share/polkit-1
 /var/lib/polkit-1
 /lib
-/usr/share/dde-api
+/usr/share/gxde-api
 /boot/grub/themes/deepin-fallback

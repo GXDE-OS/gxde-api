@@ -1,11 +1,12 @@
-dde-api (3.18.7) UNRELEASED; urgency=medium
+gxde-api (4.0.0) UNRELEASED; urgency=medium
 
   * Non-maintainer upload.
   * 调整构建依赖
+  * dde-api=>gxde-api
 
- -- gfdgd_xi <3025613752@qq.com>  Sat, 30 Nov 2024 15:57:26 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 08 Jun 2025 11:21:49 +0800
 
-dde-api (3.18.5-1+comsta) unstable; urgency=low
+gxde-api (3.18.5-1+comsta) unstable; urgency=low
 
   * ['Autobuild release-candidate: 9f06d6ffff35fd064531ab12d8bb37780e7cffc3']
 

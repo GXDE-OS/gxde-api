@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for dde-api
+# postinst script for gxde-api
 
 set -e
 player_user=deepin-sound-player

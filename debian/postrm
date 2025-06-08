@@ -1,5 +1,5 @@
 #!/bin/sh
-# postrm script for dde-api
+# postrm script for gxde-api
 
 set -e
 sound_player_user=deepin-sound-player

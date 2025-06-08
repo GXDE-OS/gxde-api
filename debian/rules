@@ -12,7 +12,7 @@ override_dh_auto_test:
 	true
 else
 override_dh_strip:
-	dh_strip --dbgsym-migration=dde-api-dbg
+	dh_strip --dbgsym-migration=gxde-api-dbg
 endif
 
 override_dh_systemd_start:
