@@ -35,7 +35,7 @@ Homepage: http://www.deepin.org
 Package: gxde-api
 Architecture: any
 Provides: dde-api
-Conflicts: dde-api
+Conflicts: dde-api (>> 4.0.0)
 Replaces: dde-api
 Depends: ${shlibs:Depends}, ${misc:Depends},
  rfkill, locales, libcanberra-pulse, blur-effect, librsvg2-bin, fonts-noto-cjk, ttf-unifont,
@@ -46,7 +46,7 @@ Description: Go-lang bingdings for dde-daemon
 Package: gxde-api-dev
 Architecture: all
 Provides: dde-api-dev
-Conflicts: dde-api-dev
+Conflicts: dde-api-dev (>> 4.0.0)
 Replaces: dde-api-dev
 Depends: ${shlibs:Depends}, ${misc:Depends},
  golang-dlib-dev(>= 1.2.13) | golang-github-linuxdeepin-go-lib-dev,
