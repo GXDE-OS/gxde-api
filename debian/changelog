@@ -1,11 +1,12 @@
-gxde-api (4.0.1) UNRELEASED; urgency=medium
+gxde-api (4.0.2) UNRELEASED; urgency=medium
 
   * Non-maintainer upload.
   * 调整构建依赖
   * dde-api=>gxde-api
   * 修改 Conflicts 版本
+  * 重新编译以添加 golang-gxde-dev 里新的节日
 
- -- gfdgd_xi <3025613752@qq.com>  Fri, 13 Jun 2025 22:59:26 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 10 Aug 2025 07:55:31 +0800
 
 gxde-api (3.18.5-1+comsta) unstable; urgency=low
 
