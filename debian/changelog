@@ -1,4 +1,4 @@
-gxde-api (4.0.3) UNRELEASED; urgency=medium
+gxde-api (4.0.4) UNRELEASED; urgency=medium
 
   * Non-maintainer upload.
   * 调整构建依赖
@@ -6,8 +6,9 @@ gxde-api (4.0.3) UNRELEASED; urgency=medium
   * 修改 Conflicts 版本
   * 重新编译以添加 golang-gxde-dev 里新的节日
   * 修改语言描述（正體中文=》繁體中文（中國臺灣））
+  * i386 机器不刷新 blur 缓存
 
- -- gfdgd_xi <3025613752@qq.com>  Mon, 20 Oct 2025 13:01:10 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sat, 22 Nov 2025 14:59:48 +0800
 
 gxde-api (3.18.5-1+comsta) unstable; urgency=low
 
