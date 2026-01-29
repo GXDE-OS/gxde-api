@@ -38,7 +38,8 @@ Provides: dde-api
 Conflicts: dde-api (>> 4.0.0)
 Replaces: dde-api
 Depends: ${shlibs:Depends}, ${misc:Depends},
- rfkill, locales, libcanberra-pulse, blur-effect, librsvg2-bin, fonts-noto-cjk, ttf-unifont,
+ rfkill, locales, libcanberra-pulse, blur-effect, librsvg2-bin, fonts-noto-cjk, 
+ ttf-unifont | fonts-unifont, 
  bc, fontconfig, coreutils, alsa-utils
 Description: Go-lang bingdings for dde-daemon
  Deepin Go-lang bindings for dde-daemon
