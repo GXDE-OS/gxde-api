@@ -20,8 +20,12 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"os"
+	"os/exec"
 	"os/signal"
+	"strings"
 
 	"pkg.deepin.io/dde/api/soundutils"
 	"pkg.deepin.io/lib/log"
@@ -35,15 +39,26 @@ func main() {
 
 	cfg, err := soundutils.GetShutdownSoundConfig()
 	if err != nil {
-		logger.Warning("failed to get shutdown sound config:", err)
-		return
+		logger.Warning("failed to get shutdown sound config, use default:", err)
+		cfg = &soundutils.ShutdownSoundConfig{
+			CanPlay: true,
+			Theme:   soundutils.GetSoundTheme(),
+			Event:   soundutils.EventSystemShutdown,
+			Device:  "",
+		}
 	}
 
 	if !cfg.CanPlay {
 		return
 	}
 
-	err = doPlayShutdownSound(cfg.Theme, cfg.Event, cfg.Device)
+	device := cfg.Device
+	if device == "" {
+		device = findDefaultAlsaDevice()
+		logger.Info("device is empty, fallback to:", device)
+	}
+
+	err = doPlayShutdownSound(cfg.Theme, cfg.Event, device)
 	if err != nil {
 		logger.Error("failed to play shutdown sound:", err)
 	}
@@ -67,4 +82,81 @@ func doPlayShutdownSound(theme, event, device string) error {
 	player := sound_effect.NewPlayer(false, sound_effect.PlayBackendALSA)
 	err := player.Play(theme, event, device)
 	return err
+}
+
+func findDefaultAlsaDevice() string {
+	out, err := exec.Command("aplay", "-l").CombinedOutput()
+	if err != nil {
+		logger.Warning("failed to run aplay -l:", string(out))
+		return ""
+	}
+
+	scanner := bufio.NewScanner(strings.NewReader(string(out)))
+	var candidate struct {
+		cardIdx int
+		cardID  string
+		dev     string
+	}
+	candidate.cardIdx = -1
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		if !strings.HasPrefix(line, "card ") {
+			continue
+		}
+		cardIdx, cardID, dev, desc := parseAplayCardLine(line)
+		if cardIdx < 0 {
+			continue
+		}
+		lowDesc := strings.ToLower(desc)
+		if strings.Contains(lowDesc, "hdmi") {
+			continue
+		}
+		// Prefer a device whose description mentions analog output.
+		if strings.Contains(lowDesc, "analog") {
+			return fmt.Sprintf("plughw:CARD=%s,DEV=%s", cardID, dev)
+		}
+		if candidate.cardIdx < 0 {
+			candidate.cardIdx = cardIdx
+			candidate.cardID = cardID
+			candidate.dev = dev
+		}
+	}
+
+	if candidate.cardIdx >= 0 {
+		return fmt.Sprintf("plughw:CARD=%s,DEV=%s", candidate.cardID, candidate.dev)
+	}
+	return ""
+}
+
+func parseAplayCardLine(line string) (cardIdx int, cardID, dev, desc string) {
+	cardPart := line
+	if i := strings.Index(line, "device "); i >= 0 {
+		devicePart := line[i:]
+		if di := strings.Index(devicePart, ":"); di >= 0 {
+			desc = strings.TrimSpace(devicePart[di+1:])
+			// desc is like "HDMI 0 [HDMI 0]" -> take text before '['
+			if bi := strings.Index(desc, "["); bi >= 0 {
+				desc = strings.TrimSpace(desc[:bi])
+			}
+		}
+		// device index
+		devField := devicePart[len("device "):]
+		if di := strings.Index(devField, ":"); di >= 0 {
+			dev = strings.TrimSpace(devField[:di])
+		}
+		cardPart = line[:i]
+	}
+
+	cp := strings.TrimSpace(strings.TrimPrefix(cardPart, "card"))
+	if ci := strings.Index(cp, ":"); ci >= 0 {
+		fmt.Sscanf(cp[:ci], "%d", &cardIdx)
+		idPart := strings.TrimSpace(cp[ci+1:])
+		if bi := strings.Index(idPart, "["); bi >= 0 {
+			cardID = strings.TrimSpace(idPart[:bi])
+		} else {
+			cardID = idPart
+		}
+	}
+	return
 }
