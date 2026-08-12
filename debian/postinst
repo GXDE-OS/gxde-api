@@ -43,6 +43,7 @@ case "$1" in
 		mkdir -p $player_home/.config/pulse
 		echo "autospawn = no" > $player_home/.config/pulse/client.conf
 		chown -R $player_user:$player_user $player_home/.config
+		systemctl enable deepin-shutdown-sound.service || true
 
 		if [ -f $grubCfgFile -a -f /etc/default/grub ]; then
 			adjustGrubTheme
