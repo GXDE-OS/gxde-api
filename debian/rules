@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 export GOPATH := /usr/share/gocode
+export CGO_CFLAGS := $(shell dpkg-buildflags --get CFLAGS) -std=gnu17
 
 %:
 	dh $@ --with systemd
