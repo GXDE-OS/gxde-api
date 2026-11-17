@@ -1,5 +1,5 @@
 # Maintainer: CharOfString <root@charofstring.cc>
-pkgname=gxde-api-git
+pkgname=gxde-api
 pkgver=4.0.6
 pkgrel=1
 pkgdesc='D-Bus interfaces and helpers for miscellaneous GXDE desktop services'
@@ -14,8 +14,9 @@ depends=('alsa-utils' 'bc' 'fontconfig' 'librsvg' 'util-linux' 'coreutils' 'blur
          'xcur2png' 'libcanberra' 'libpulse' 'glib2' 'gtk3' 'gdk-pixbuf2' 'gdk-pixbuf-xlib' 'cairo'
          'freetype2' 'poppler-glib' 'libxi' 'libx11' 'libgudev' 'noto-fonts-cjk' 'glibc')
 makedepends=('git' 'go' 'deepin-gettext-tools' 'golang-gxde-dev-git')
-provides=('deepin-api')
-conflicts=('deepin-api')
+provides=('deepin-api' "gxde-api-git=$pkgver")
+conflicts=('deepin-api' 'gxde-api-git')
+replaces=('gxde-api-git')
 source=()
 sha512sums=()
 
