@@ -13,7 +13,7 @@ license=('GPL-3.0-or-later')
 depends=('alsa-utils' 'bc' 'fontconfig' 'librsvg' 'util-linux' 'coreutils' 'blur-effect'
          'xcur2png' 'libcanberra' 'libpulse' 'glib2' 'gtk3' 'gdk-pixbuf2' 'gdk-pixbuf-xlib' 'cairo'
          'freetype2' 'poppler-glib' 'libxi' 'libx11' 'libgudev' 'noto-fonts-cjk' 'glibc')
-makedepends=('git' 'go' 'deepin-gettext-tools' 'golang-gxde-dev-git')
+makedepends=('git' 'go' 'deepin-gettext-tools' 'golang-gxde-dev')
 provides=('deepin-api' "gxde-api-git=$pkgver")
 conflicts=('deepin-api' 'gxde-api-git')
 replaces=('gxde-api-git')
